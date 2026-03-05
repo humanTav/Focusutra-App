@@ -199,6 +199,14 @@ export const saveSessionIntention = async (goal: string, brainDump: string) => {
   }
 };
 
+export const clearSessionIntention = async () => {
+  try {
+    await AsyncStorage.removeItem('current_session_intention');
+  } catch (e) {
+    console.error("Failed to clear intention", e);
+  }
+};
+
 export const getSessionIntention = async () => {
   try {
     const data = await AsyncStorage.getItem('current_session_intention');

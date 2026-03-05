@@ -228,7 +228,7 @@ export default function FocusScreen({ navigation }: any) {
     const minutesToSave = Math.max(1, Math.ceil(selectedOption.value / 60));
     try {
       await saveSession(minutesToSave);
-      navigation.replace('Success', { minutes: minutesToSave });
+      navigation.replace('Timeout', { minutes: minutesToSave });
     } catch (e) {
       navigation.goBack();
     }
