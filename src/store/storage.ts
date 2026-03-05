@@ -19,6 +19,12 @@ const KEYS = {
 
   FOCUS_SOUND: 'focusutra_focus_sound_v1',
   FOCUS_SOUND_ENABLED: 'focus_sound_enabled',
+
+  BRAIN_DUMP_ENABLED: 'focusutra_braindump_enabled_v1',
+  GOAL_ENABLED: 'focusutra_goal_enabled_v1',
+  ANCHOR_ENABLED: 'focusutra_anchor_enabled_v1',
+  ANCHOR_DURATION: 'focusutra_anchor_duration_v1',
+  RECOVERY_ENABLED: 'focusutra_recovery_enabled_v1',
 };
 
 export const DEFAULT_CHECKLIST: ChecklistItem[] = [
@@ -202,3 +208,22 @@ export const getSessionIntention = async () => {
     return { goal: '', brainDump: '' };
   }
 };
+
+// --- BRAIN DUMP ---
+export const getBrainDumpEnabled = () => getData<boolean>(KEYS.BRAIN_DUMP_ENABLED, true);
+export const saveBrainDumpEnabled = (v: boolean) => setData(KEYS.BRAIN_DUMP_ENABLED, v);
+
+// --- GOAL ---
+export const getGoalEnabled = () => getData<boolean>(KEYS.GOAL_ENABLED, true);
+export const saveGoalEnabled = (v: boolean) => setData(KEYS.GOAL_ENABLED, v);
+
+// --- ANCHOR ---
+export const getAnchorEnabled = () => getData<boolean>(KEYS.ANCHOR_ENABLED, true);
+export const saveAnchorEnabled = (v: boolean) => setData(KEYS.ANCHOR_ENABLED, v);
+
+export const getAnchorDuration = () => getData<number>(KEYS.ANCHOR_DURATION, 30);
+export const saveAnchorDuration = (seconds: number) => setData(KEYS.ANCHOR_DURATION, seconds);
+
+// --- RECOVERY ---
+export const getRecoveryEnabled = () => getData<boolean>(KEYS.RECOVERY_ENABLED, true);
+export const saveRecoveryEnabled = (v: boolean) => setData(KEYS.RECOVERY_ENABLED, v);

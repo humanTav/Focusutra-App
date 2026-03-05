@@ -4,7 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import {
   getStats, getHistory, getStartDate, formatMinutesToHours, getDateKey,
-  getChecklistEnabled, getChecklistItems, getBreathingEnabled
+  getChecklistEnabled, getChecklistItems, getBreathingEnabled,
+  getBrainDumpEnabled, getGoalEnabled, getAnchorEnabled,
 } from '../store/storage';
 
 // --- STREAK HELPER ---
@@ -66,15 +67,21 @@ export default function HomeScreen({ navigation }: any) {
       setStartDate(new Date());
     }
 
+    const brainDumpEnabled = await getBrainDumpEnabled();
+    const goalEnabled = await getGoalEnabled();
     const checkEnabled = await getChecklistEnabled();
     const checkItems = await getChecklistItems();
     const breathEnabled = await getBreathingEnabled();
+    const anchorEnabled = await getAnchorEnabled();
 
-    if (!(checkEnabled && checkItems.some((i: any) => i.selected)) && !breathEnabled) {
-      setNextRoute('Focus');
-    } else {
-      setNextRoute('Gate');
-    }
+    const needsGate =
+      brainDumpEnabled ||
+      goalEnabled ||
+      (checkEnabled && checkItems.some((i: any) => i.selected)) ||
+      breathEnabled ||
+      anchorEnabled;
+
+    setNextRoute(needsGate ? 'Gate' : 'Focus');
   }, []);
 
   useEffect(() => { loadData(); }, [loadData]);

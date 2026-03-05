@@ -11,6 +11,7 @@ import FocusScreen from './src/screens/FocusScreen';
 import SuccessScreen from './src/screens/SuccessScreen';
 import BuilderScreen from './src/screens/BuildScreen';
 import TimeoutScreen from './src/screens/TimeoutScreen';
+import FinalScreen from './src/screens/FinalScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +47,7 @@ export default function App() {
           <Stack.Screen name="Builder" component={BuilderScreen} />
           <Stack.Screen name="Success" component={SuccessScreen} />
           <Stack.Screen name="Timeout" component={TimeoutScreen} />
+          <Stack.Screen name="Final" component={FinalScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
